@@ -1,0 +1,9 @@
+                    left=0;
+                    right=n-1;
+                    while(left<=right)
+                    {
+                       mid=(left+right)/2;
+                       condition
+                       left=mid+1;
+                       right=mid-1;
+                    }
