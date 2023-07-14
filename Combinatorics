@@ -1,0 +1,71 @@
+                                          // combinatorics
+const ll mod=1e9+7;
+const ll mx=1e5+10;
+ll fact[mx];
+ll inv[mx];
+ll power(ll x,ll y,ll p)  
+{
+  ll res=1;
+  x=x%p;
+  if(x==0)
+  return 0;
+  while(y>0)
+  {
+    if(y&1)
+    res=(res*x)%mod;
+    y=y>>1;
+    x=(x*x)%p;
+  }
+  return res;
+}
+void inti()
+{
+     fact[0]=1;
+     for(ll i=1;i<mx;i++)
+     fact[i]=(fact[i-1]%mod*i%mod)%mod;
+     for(ll i=0;i<mx;i++)
+     inv[i]=power(fact[i],mod-2,mod)%mod;
+   //  cout<<inv[2]<<nl;
+}
+ll ncr(ll x,ll y,ll m)
+{
+ // cout<<fact[x]<<" "<<inv[y]<<" "<<inv[x-y]<<" "<<nl;
+  return (fact[x]%m*inv[y]%m*inv[x-y]%m)%m;
+}
+void solve()
+{
+    ll n,i;
+    cin>>n;
+    ll a[n];
+    f(i,n)cin>>a[i];
+   // cout<<"val"<<nl;
+    sort(a,a+n);
+    ll ans=0;
+    for(i=0;i<n;i++)
+    {
+      if(a[i]<=i+1)
+      {
+        ll lft=ncr(i,a[i]-1,mod);
+        ll rgt=power(2,n-i-1,mod);
+       // cout<<lft<<" "<<rgt<<" "<<i<<nl;
+        ans+=(lft*rgt)%mod;
+        ans=ans%mod;
+      }
+    }
+    cout<<ans<<nl;
+
+}
+int main()
+{
+
+    FastIO
+    int tt;tt=1;
+       inti();
+    cin>>tt;
+    while(tt--)
+    {
+       solve();
+    }
+
+    return 0;
+}
