@@ -5,6 +5,8 @@
  ll power(ll x,ll y,ll p)
     {
   ll res=1;
+if(y==0)
+return 1;
   x=x%p;
  if(x==0)
  return 0;
