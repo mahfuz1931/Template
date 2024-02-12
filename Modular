@@ -1,21 +1,35 @@
                                                                              Binary_Exponent+ Modular_Multiplicative_Inverse
  
  
- 
- ll power(ll x,ll y,ll p)
+ll mulmod(ll a,ll b,ll mod)
+{
+    ll x=0,y=a%mod;
+    while(b)
     {
-  ll res=1;
-if(y==0)
-return 1;
-  x=x%p;
- if(x==0)
- return 0;
-  while(y>0)
-  {
-    if(y&1)
-    res=(res*x)%mod;
-    y=y>>1;
-    x=(x*x)%p;
-  }
-  return res;
+        if(b%2)
+        {
+            x=(x+y)%mod;
+        }
+        b/=2;
+        y=(2LL*y)%mod;
+    }
+    return x%mod;
+}
+ll binpower(ll bas,ll p,ll mod)
+{
+    ll res=1;
+    while(p)
+    {
+        if(p%2)
+        {
+                res=mulmod(res,bas,mod);
+                p--;
+        }
+        else
+        {
+                 bas=mulmod(bas,bas,mod);
+                 p/=2;
+        }
+    }
+    return res%mod;
 }
